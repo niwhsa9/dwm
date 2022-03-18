@@ -9,7 +9,7 @@ static const char *screenie[]   = { "/usr/bin/flameshot", "gui",  NULL };
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -22,7 +22,7 @@ static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
 static const char col_orange[]      = "#ffa200";
 static const char col_greenish[]    = "#2bcf7d";
-static const char col_pink[]        = "#ad027d";
+static const char col_pink[]        = "#a64ea2"; //"#c75fc3"; // "#ad027d";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_pink, col_gray2 },
