@@ -26,7 +26,7 @@ static const char col_pink[]        = "#a64ea2"; //"#c75fc3"; // "#ad027d";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray2, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_greenish,  col_orange},
+	[SchemeSel]  = { col_gray4, col_greenish,  col_greenish},
 };
 
 /* tagging */
