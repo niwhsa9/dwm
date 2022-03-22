@@ -4,7 +4,9 @@
  */
 
 static const char *screenie[]   = { "/usr/bin/flameshot", "gui",  NULL };
-
+static const char *inc_brightness[]   = { "/home/ashwin/Documents/dwm/dwmblocks/python-scripts/inc_b",  NULL };
+static const char *dec_brightness[]   = { "/home/ashwin/Documents/dwm/dwmblocks/python-scripts/dec_b",  NULL };
+//static const char *dec_brightness[]   = { "/usr/bin/python3 /home/ashwin/Documents/dwm/dwmblocks/python-scripts/change-brightness.py dec", NULL };
 
 /* See LICENSE file for copyright and license details. */
 
@@ -76,6 +78,8 @@ static const char *termcmd[]  = { "st", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ 0,                            0x0000ff61, spawn, {.v = screenie }},
+	{ 0,                            0x0000ffc8, spawn, {.v = dec_brightness }},
+	{ 0,                            0x0000ffc9, spawn, {.v = inc_brightness}},
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
