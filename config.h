@@ -6,6 +6,9 @@
 static const char *screenie[]   = { "/usr/bin/flameshot", "gui",  NULL };
 static const char *inc_brightness[]   = { "/home/ashwin/Documents/dwm/dwmblocks/python-scripts/inc_b",  NULL };
 static const char *dec_brightness[]   = { "/home/ashwin/Documents/dwm/dwmblocks/python-scripts/dec_b",  NULL };
+static const char *dec_volume[]   = { "/home/ashwin/Documents/dwm/dwmblocks/python-scripts/dec_vol",  NULL };
+static const char *inc_volume[]   = { "/home/ashwin/Documents/dwm/dwmblocks/python-scripts/inc_vol",  NULL };
+static const char *mute_volume[]   = { "/home/ashwin/Documents/dwm/dwmblocks/python-scripts/mute_vol",  NULL };
 //static const char *dec_brightness[]   = { "/usr/bin/python3 /home/ashwin/Documents/dwm/dwmblocks/python-scripts/change-brightness.py dec", NULL };
 
 /* See LICENSE file for copyright and license details. */
@@ -80,6 +83,9 @@ static Key keys[] = {
 	{ 0,                            0x0000ff61, spawn, {.v = screenie }},
 	{ 0,                            0x0000ffc8, spawn, {.v = dec_brightness }},
 	{ 0,                            0x0000ffc9, spawn, {.v = inc_brightness}},
+	{ 0,                            0x1008ff12, spawn, {.v = mute_volume}},
+	{ 0,                            0x1008ff11, spawn, {.v = dec_volume}},
+	{ 0,                            0x1008ff13, spawn, {.v = inc_volume}},
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
