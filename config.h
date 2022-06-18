@@ -37,6 +37,11 @@ static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_white, col_darkerb, col_darkerb },
 	[SchemeSel]  = { col_white, col_lighterb,  col_lighterb},
+	[SchemeStatus] = { col_white, col_darkerb, col_darkerb },
+	[SchemeTagsSel]  = { col_white, col_lighterb,  col_lighterb},
+	[SchemeTagsNorm] = { col_white, col_darkerb, col_darkerb },
+	[SchemeInfoSel] = { col_white, col_darkerb, col_darkerb },
+	[SchemeInfoNorm] = { col_white, col_darkerb, col_darkerb },
 };
 
 /* tagging */
