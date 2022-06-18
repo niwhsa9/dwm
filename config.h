@@ -15,7 +15,7 @@ static const char *mute_volume[]   = { "/home/ashwin/Documents/dwm/dwmblocks/pyt
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx     = 5;        /* gaps between windows */
+static const unsigned int gappx     = 20;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -30,11 +30,13 @@ static const char col_daisy[]       = "#BCA136";
 static const char col_greenish[]    = "#2bcf7d";
 static const char col_indigo[]      = "#093145"; 
 static const char col_white[]       = "#ffffff"; 
+static const char col_darkerb[]       = "#243a73"; 
+static const char col_lighterb[]       = "#a5becc"; 
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_white, col_indigo, col_indigo },
-	[SchemeSel]  = { col_white, col_daisy,  col_daisy},
+	[SchemeNorm] = { col_white, col_darkerb, col_darkerb },
+	[SchemeSel]  = { col_white, col_lighterb,  col_lighterb},
 };
 
 /* tagging */
