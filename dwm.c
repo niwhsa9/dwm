@@ -20,6 +20,11 @@
  *
  * To understand everything else, start reading main().
  */
+
+/* 
+- https://magcius.github.io/xplain/article/x-basics.html
+*/
+
 #include <errno.h>
 #include <locale.h>
 #include <signal.h>
@@ -246,19 +251,19 @@ static int (*xerrorxlib)(Display *, XErrorEvent *);
 static unsigned int numlockmask = 0;
 static void (*handler[LASTEvent]) (XEvent *) = {
 	[ButtonPress] = buttonpress,
-	[ClientMessage] = clientmessage,
+	[ClientMessage] = clientmessage, // specific client requests, such as full screen or making itself active
 	[ConfigureRequest] = configurerequest, // Client requests configuration like resizing, lowering in stack, etc.
-	[ConfigureNotify] = configurenotify, 
-	[DestroyNotify] = destroynotify,
+	[ConfigureNotify] = configurenotify, // This is the actual executed configuration request upon completion, based on WM input
+	[DestroyNotify] = destroynotify, // Window death event
 	[EnterNotify] = enternotify, // Cursor enter into new window
-	[Expose] = expose,
+	[Expose] = expose, // Lost window region event, not super important other than fixing the bar
 	[FocusIn] = focusin,
 	[KeyPress] = keypress,
-	[MappingNotify] = mappingnotify,
-	[MapRequest] = maprequest,
-	[MotionNotify] = motionnotify,
-	[PropertyNotify] = propertynotify,
-	[UnmapNotify] = unmapnotify
+	[MappingNotify] = mappingnotify, // Notifies a complete mapping
+	[MapRequest] = maprequest, // Request to map a window, that is, a client wants to show a window
+	[MotionNotify] = motionnotify, // Cursor movement
+	[PropertyNotify] = propertynotify, // Notify when window change its own properties
+	[UnmapNotify] = unmapnotify // Request to unmap a window, that is a client wants to hide the window (e.g. minimization)
 };
 static Atom wmatom[WMLast], netatom[NetLast];
 static int running = 1;
@@ -1021,6 +1026,9 @@ killclient(const Arg *arg)
 	}
 }
 
+/*
+ * This function is dispatched to handle new windows
+ */
 void
 manage(Window w, XWindowAttributes *wa)
 {
@@ -1093,6 +1101,9 @@ mappingnotify(XEvent *e)
 		grabkeys();
 }
 
+/*
+Dispatched for a new window being created that DWM needs to handle
+*/
 void
 maprequest(XEvent *e)
 {
@@ -1101,8 +1112,11 @@ maprequest(XEvent *e)
 
 	if (!XGetWindowAttributes(dpy, ev->window, &wa))
 		return;
+	// This is a special flag for pop-ups that don't want to be managed by a WM
+	// A lot of window managers use this to avoid window re-framing or decoration on pop-ups
 	if (wa.override_redirect)
 		return;
+	// Creates a Client struct for the window if one doesn't exist and adds to stack
 	if (!wintoclient(ev->window))
 		manage(ev->window, &wa);
 }
@@ -2054,6 +2068,9 @@ view(const Arg *arg)
 	arrange(selmon);
 }
 
+/*
+ * Checks if an X window has an associated Client struct managed by DWM
+ */
 Client *
 wintoclient(Window w)
 {
